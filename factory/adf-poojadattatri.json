@@ -1,0 +1,9 @@
+{
+	"name": "adf-poojadattatri",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "43cb9d7e-d2d6-49e5-ac59-bbac16e166bb",
+		"tenantId": "5b973f99-77df-4beb-b27d-aa0c70b8482c"
+	}
+}
