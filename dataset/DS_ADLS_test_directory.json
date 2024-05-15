@@ -1,5 +1,5 @@
 {
-	"name": "DS_ADLS_adf_poojadattatri_user_profile_001_input",
+	"name": "DS_ADLS_test_directory",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputstoragels",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "user-profile/raw",
+				"folderPath": "test-directory",
 				"fileSystem": "azureadf"
 			},
 			"columnDelimiter": ",",
@@ -60,6 +60,5 @@
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }
