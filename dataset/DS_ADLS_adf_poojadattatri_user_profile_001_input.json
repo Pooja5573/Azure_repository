@@ -5,11 +5,6 @@
 			"referenceName": "inputstoragels",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"FileNameDS": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
