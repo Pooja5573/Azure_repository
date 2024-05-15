@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "DS_ADLS_adf_poojadattatri_user_profile_001_input",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputstoragels",
