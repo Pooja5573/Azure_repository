@@ -1,12 +1,12 @@
 {
-	"name": "DelimitedText1",
+	"name": "test_150524",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputstoragels",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"FileNameDS": {
+			"folder_path": {
 				"type": "string"
 			}
 		},
@@ -15,11 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().FileNameDS",
+				"folderPath": {
+					"value": "@dataset().folder_path",
 					"type": "Expression"
 				},
-				"folderPath": "user-profile/raw",
 				"fileSystem": "azureadf"
 			},
 			"columnDelimiter": ",",
@@ -69,6 +68,5 @@
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

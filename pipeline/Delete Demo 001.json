@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Delete Demo 001",
 	"properties": {
 		"activities": [
 			{
@@ -19,7 +19,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
+							"fileListPath": "azureadf/user-profile/FileNames.txt",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -49,15 +49,42 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Delete1",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_ADLS_adf_poojadattatri_user_profile_001_input",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
-		"parameters": {
-			"FileNameDS": {
-				"type": "string"
-			}
+		"folder": {
+			"name": "Data Movement Activity/Delete"
 		},
-		"annotations": [],
-		"lastPublishTime": "2024-05-14T06:51:11Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

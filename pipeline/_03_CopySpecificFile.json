@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "_03_CopySpecificFile",
 	"properties": {
 		"activities": [
 			{
@@ -19,7 +19,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
+							"fileListPath": "azureadf/user-profile/FileNames.txt",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -27,27 +27,33 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "JsonSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_ADLS_adf_poojadattatri_user_profile_001_input",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_ADLS_adf_poojadattatri_user_profile_001_output",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
-		"parameters": {
-			"FileNameDS2": {
-				"type": "string"
-			}
+		"folder": {
+			"name": "Data Movement Activity/Copy Data"
 		},
-		"annotations": [],
-		"lastPublishTime": "2024-05-14T06:51:10Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }

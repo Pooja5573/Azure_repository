@@ -1,16 +1,24 @@
 {
-	"name": "Json2",
+	"name": "test_150524_Jsonop",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputstoragels",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"json_op": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "user-profile/outputs",
+				"folderPath": {
+					"value": "@dataset().json_op",
+					"type": "Expression"
+				},
 				"fileSystem": "azureadf"
 			}
 		},
@@ -49,6 +57,5 @@
 				}
 			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

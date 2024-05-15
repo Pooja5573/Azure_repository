@@ -1,5 +1,5 @@
 {
-	"name": "Json1",
+	"name": "DS_ADLS_adf_poojadattatri_user_profile_001_output",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "inputstoragels",

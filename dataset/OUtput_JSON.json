@@ -1,0 +1,27 @@
+{
+	"name": "OUtput_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "inputstoragels",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Output_Json_Folder": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().Output_Json_Folder",
+					"type": "Expression"
+				},
+				"fileSystem": "azureadf"
+			}
+		},
+		"schema": {}
+	}
+}
