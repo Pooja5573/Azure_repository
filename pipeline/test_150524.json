@@ -1,9 +1,9 @@
 {
-	"name": "Copy_to_respevtive_Op-Delete and Copy_from_ADLS_to_SQL",
+	"name": "test_150524",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Text Files",
+				"name": "Copy txt",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.input_folder",
+								"value": "@pipeline().parameters.input",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*.txt",
@@ -55,11 +55,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Dataset_input_Output",
+						"referenceName": "test_150524",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder_path": {
-								"value": "@pipeline().parameters.input_folder",
+							"folder_path": {
+								"value": "@pipeline().parameters.input",
 								"type": "Expression"
 							}
 						}
@@ -67,11 +67,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Dataset_input_Output",
+						"referenceName": "test_150524",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder_path": {
-								"value": "@pipeline().parameters.Output_Text_Folder",
+							"folder_path": {
+								"value": "@pipeline().parameters.text_op",
 								"type": "Expression"
 							}
 						}
@@ -79,11 +79,11 @@
 				]
 			},
 			{
-				"name": "Copy CSV Files",
+				"name": "Copy csv",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy Text Files",
+						"activity": "Copy txt",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -104,7 +104,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.input_folder",
+								"value": "@pipeline().parameters.input",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*.csv",
@@ -128,11 +128,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Dataset_input_Output",
+						"referenceName": "test_150524",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder_path": {
-								"value": "@pipeline().parameters.input_folder",
+							"folder_path": {
+								"value": "@pipeline().parameters.input",
 								"type": "Expression"
 							}
 						}
@@ -140,11 +140,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "OUtput_JSON",
+						"referenceName": "test_150524_Jsonop",
 						"type": "DatasetReference",
 						"parameters": {
-							"Output_Json_Folder": {
-								"value": "@pipeline().parameters.Output_Json_Folder",
+							"json_op": {
+								"value": "@pipeline().parameters.json_op",
 								"type": "Expression"
 							}
 						}
@@ -152,11 +152,11 @@
 				]
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy ADLS_to_SQL",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Copy CSV Files",
+						"activity": "Copy csv",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -177,7 +177,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.Output_Json_Folder",
+								"value": "@pipeline().parameters.json_op",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*.json",
@@ -198,11 +198,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "OUtput_JSON",
+						"referenceName": "test_150524_Jsonop",
 						"type": "DatasetReference",
 						"parameters": {
-							"Output_Json_Folder": {
-								"value": "@pipeline().parameters.Output_Json_Folder",
+							"json_op": {
+								"value": "@pipeline().parameters.json_op",
 								"type": "Expression"
 							}
 						}
@@ -218,11 +218,9 @@
 			{
 				"name": "Delete1",
 				"type": "Delete",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Copy data1",
+						"activity": "Copy ADLS_to_SQL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -238,11 +236,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Dataset_input_Output",
+						"referenceName": "test_150524",
 						"type": "DatasetReference",
 						"parameters": {
-							"Folder_path": {
-								"value": "@pipeline().parameters.input_folder",
+							"folder_path": {
+								"value": "@pipeline().parameters.input",
 								"type": "Expression"
 							}
 						}
@@ -258,15 +256,15 @@
 			}
 		],
 		"parameters": {
-			"input_folder": {
+			"input": {
 				"type": "string",
 				"defaultValue": "user-profile/raw"
 			},
-			"Output_Json_Folder": {
+			"json_op": {
 				"type": "string",
 				"defaultValue": "user-profile/outputs/Jsonfiles-OP"
 			},
-			"Output_Text_Folder": {
+			"text_op": {
 				"type": "string",
 				"defaultValue": "user-profile/outputs/Textfiles-OP"
 			}
