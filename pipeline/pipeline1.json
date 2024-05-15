@@ -40,13 +40,7 @@
 				"inputs": [
 					{
 						"referenceName": "DS_ADLS_adf_poojadattatri_user_profile_001_input",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileNameDS": {
-								"value": "@pipeline().parameters.FileNameDS",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
