@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DS_ADLS_adf_poojadattatri_user_profile_001_input",
+						"referenceName": "DS_ADLS_test_directory",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
