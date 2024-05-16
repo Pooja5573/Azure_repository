@@ -1,0 +1,29 @@
+{
+	"name": "ids_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "inputstoragels",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ids.txt",
+				"folderPath": "user-profile",
+				"fileSystem": "azureadf"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "13",
+				"type": "String"
+			}
+		]
+	}
+}
