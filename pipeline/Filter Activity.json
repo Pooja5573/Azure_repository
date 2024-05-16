@@ -1,0 +1,82 @@
+{
+	"name": "Filter Activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fetch Records from User Table",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_Azure_SQL_user_ifo",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Filter Records with United States",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Fetch Records from User Table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Records from User Table').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(item().country,'United States' )",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Filter Records by country and region",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Fetch Records from User Table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Records from User Table').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@and(equals(item().country,'United States'), equals(item().region,'Virginia'))\n            ",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Data Movement Activity/Filter Activity"
+		},
+		"annotations": []
+	}
+}

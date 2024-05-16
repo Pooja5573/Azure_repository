@@ -1,0 +1,59 @@
+{
+	"name": "DS_Azure_SQL_Inactive_users",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDataBase_user_db_150524",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "dbo",
+				"type": "date"
+			},
+			{
+				"name": "email",
+				"type": "varchar"
+			},
+			{
+				"name": "gender",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "region",
+				"type": "varchar"
+			},
+			{
+				"name": "city",
+				"type": "varchar"
+			},
+			{
+				"name": "asset",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "marital_status",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "users"
+		}
+	}
+}
