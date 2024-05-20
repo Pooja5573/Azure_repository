@@ -1,0 +1,12 @@
+{
+	"name": "Dataset_AzureSQL_User_Table_List",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDataBase_user_db_150524",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

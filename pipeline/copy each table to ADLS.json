@@ -1,0 +1,31 @@
+{
+	"name": "copy each table to ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Dataset_AzureSQL_User_Table_List",
+						"type": "DatasetReference"
+					},
+					"fieldList": []
+				}
+			}
+		],
+		"folder": {
+			"name": "case Study"
+		},
+		"annotations": []
+	}
+}
