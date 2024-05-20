@@ -1,0 +1,12 @@
+{
+	"name": "table_list_20_05_24",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQLDataBase_user_db_150524",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

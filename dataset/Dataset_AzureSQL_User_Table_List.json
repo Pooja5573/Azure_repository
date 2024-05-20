@@ -5,8 +5,28 @@
 			"referenceName": "LS_AzureSQLDataBase_user_db_150524",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"schema": {
+				"type": "string",
+				"defaultValue": "abc"
+			},
+			"tablename": {
+				"type": "string",
+				"defaultValue": "abc"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
 	}
 }
